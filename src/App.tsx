@@ -10,6 +10,7 @@ import { Hidden, CssBaseline } from "@material-ui/core";
 import theme from "./theme";
 import { Copyright } from "@material-ui/icons";
 import Header from "./components/Header";
+import Content from "./components/Content";
 
 const drawerWidth = 256;
 
@@ -71,7 +72,9 @@ function App(props: AppProps) {
         </nav>
         <div className={classes.app}>
           <Header onDrawerToggle={handleDrawerToggle} />
-          <main className={classes.main}>content</main>
+          <main className={classes.main}>
+            <Content />
+          </main>
           <footer className={classes.footer}>
             <Copyright />
           </footer>

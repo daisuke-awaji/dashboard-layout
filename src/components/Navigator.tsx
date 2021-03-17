@@ -23,6 +23,7 @@ import TimerIcon from "@material-ui/icons/Timer";
 import SettingsIcon from "@material-ui/icons/Settings";
 import PhonelinkSetupIcon from "@material-ui/icons/PhonelinkSetup";
 import { Omit } from "@material-ui/types";
+import { SERVICE_NAME } from "../Constants";
 
 const categories = [
   {
@@ -101,7 +102,7 @@ function Navigator(props: NavigatorProps) {
         <ListItem
           className={clsx(classes.firebase, classes.item, classes.itemCategory)}
         >
-          Paperbase
+          {SERVICE_NAME}
         </ListItem>
         <ListItem className={clsx(classes.item, classes.itemCategory)}>
           <ListItemIcon className={classes.itemIcon}>
