@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -6,7 +6,6 @@ import Grid from "@material-ui/core/Grid";
 import HelpIcon from "@material-ui/icons/Help";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
-import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import Tab from "@material-ui/core/Tab";
@@ -20,6 +19,8 @@ import {
   withStyles,
   WithStyles,
 } from "@material-ui/core/styles";
+import { Link, useLocation } from "react-router-dom";
+import { links } from "./links";
 
 const lightColor = "rgba(255, 255, 255, 0.7)";
 
@@ -52,6 +53,22 @@ interface HeaderProps extends WithStyles<typeof styles> {
 
 function Header(props: HeaderProps) {
   const { classes, onDrawerToggle } = props;
+  const [value, setValue] = React.useState(0);
+  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+    setValue(newValue);
+  };
+  const { pathname } = useLocation();
+  useEffect(() => {
+    setValue(0);
+  }, [setValue]);
+
+  const currentLink = links.find((item) => pathname.includes(item.path));
+  useEffect(() => {
+    if (currentLink?.path === pathname) {
+      setValue(0);
+    }
+  }, [currentLink, setValue, pathname]);
+  if (!currentLink) return null;
 
   return (
     <React.Fragment>
@@ -72,7 +89,7 @@ function Header(props: HeaderProps) {
             </Hidden>
             <Grid item xs />
             <Grid item>
-              <Link className={classes.link} href="#" variant="body2">
+              <Link className={classes.link} to="/">
                 Go to docs
               </Link>
             </Grid>
@@ -105,7 +122,7 @@ function Header(props: HeaderProps) {
           <Grid container alignItems="center" spacing={1}>
             <Grid item xs>
               <Typography color="inherit" variant="h5" component="h1">
-                Authentication
+                {currentLink.id}
               </Typography>
             </Grid>
             <Grid item>
@@ -135,11 +152,18 @@ function Header(props: HeaderProps) {
         position="static"
         elevation={0}
       >
-        <Tabs value={0} textColor="inherit">
-          <Tab textColor="inherit" label="Users" />
-          <Tab textColor="inherit" label="Sign-in method" />
-          <Tab textColor="inherit" label="Templates" />
-          <Tab textColor="inherit" label="Usage" />
+        <Tabs value={value} onChange={handleChange} textColor="inherit">
+          {currentLink.children.map((child) => {
+            return (
+              <Tab
+                textColor="inherit"
+                label={child.label}
+                component={Link}
+                to={child.to}
+                key={child.to}
+              />
+            );
+          })}
         </Tabs>
       </AppBar>
     </React.Fragment>

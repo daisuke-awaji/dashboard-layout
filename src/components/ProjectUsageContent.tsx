@@ -8,16 +8,9 @@ const useStyles = makeStyles((theme: Theme) =>
     root: {
       flexGrow: 1,
     },
-    paper: {
-      height: 140,
-      width: 100,
-    },
-    control: {
-      padding: theme.spacing(2),
-    },
   })
 );
-const Content = () => {
+const ProjectUsageContent = () => {
   const classes = useStyles();
 
   return (
@@ -32,4 +25,4 @@ const Content = () => {
   );
 };
 
-export default Content;
+export default ProjectUsageContent;

@@ -16,34 +16,38 @@ import HomeIcon from "@material-ui/icons/Home";
 import PeopleIcon from "@material-ui/icons/People";
 import DnsRoundedIcon from "@material-ui/icons/DnsRounded";
 import PermMediaOutlinedIcon from "@material-ui/icons/PhotoSizeSelectActual";
-import PublicIcon from "@material-ui/icons/Public";
-import SettingsEthernetIcon from "@material-ui/icons/SettingsEthernet";
-import SettingsInputComponentIcon from "@material-ui/icons/SettingsInputComponent";
 import TimerIcon from "@material-ui/icons/Timer";
 import SettingsIcon from "@material-ui/icons/Settings";
 import PhonelinkSetupIcon from "@material-ui/icons/PhonelinkSetup";
 import { Omit } from "@material-ui/types";
 import { SERVICE_NAME } from "../Constants";
+import { Link, useLocation } from "react-router-dom";
+import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 
 const categories = [
   {
     id: "Develop",
     children: [
-      { id: "Authentication", icon: <PeopleIcon />, active: true },
-      { id: "Database", icon: <DnsRoundedIcon /> },
-      { id: "Storage", icon: <PermMediaOutlinedIcon /> },
-      { id: "Hosting", icon: <PublicIcon /> },
-      { id: "Functions", icon: <SettingsEthernetIcon /> },
-      { id: "ML Kit", icon: <SettingsInputComponentIcon /> },
+      {
+        id: "Authentication",
+        icon: <PeopleIcon />,
+        to: "/authentication",
+      },
+      { id: "Database", icon: <DnsRoundedIcon />, to: "/database" },
+      { id: "Storage", icon: <PermMediaOutlinedIcon />, to: "/storage" },
     ],
   },
   {
     id: "Quality",
     children: [
-      { id: "Analytics", icon: <SettingsIcon /> },
-      { id: "Performance", icon: <TimerIcon /> },
-      { id: "Test Lab", icon: <PhonelinkSetupIcon /> },
+      { id: "Analytics", icon: <SettingsIcon />, to: "/analytics" },
+      { id: "Performance", icon: <TimerIcon />, to: "/performance" },
+      { id: "Test Lab", icon: <PhonelinkSetupIcon />, to: "/testlab" },
     ],
+  },
+  {
+    id: "Cost",
+    children: [{ id: "Cost", icon: <AttachMoneyIcon />, to: "/cost" }],
   },
 ];
 
@@ -95,7 +99,7 @@ export interface NavigatorProps
 
 function Navigator(props: NavigatorProps) {
   const { classes, ...other } = props;
-
+  const { pathname } = useLocation();
   return (
     <Drawer variant="permanent" {...other}>
       <List disablePadding>
@@ -127,21 +131,32 @@ function Navigator(props: NavigatorProps) {
                 {id}
               </ListItemText>
             </ListItem>
-            {children.map(({ id: childId, icon, active }) => (
-              <ListItem
+            {children.map(({ id: childId, icon, to }) => (
+              <Link
+                to={to}
+                style={{ color: "inherit", textDecoration: "none" }}
                 key={childId}
-                button
-                className={clsx(classes.item, active && classes.itemActiveItem)}
               >
-                <ListItemIcon className={classes.itemIcon}>{icon}</ListItemIcon>
-                <ListItemText
-                  classes={{
-                    primary: classes.itemPrimary,
-                  }}
+                <ListItem
+                  key={childId}
+                  button
+                  className={clsx(
+                    classes.item,
+                    pathname.includes(to) && classes.itemActiveItem
+                  )}
                 >
-                  {childId}
-                </ListItemText>
-              </ListItem>
+                  <ListItemIcon className={classes.itemIcon}>
+                    {icon}
+                  </ListItemIcon>
+                  <ListItemText
+                    classes={{
+                      primary: classes.itemPrimary,
+                    }}
+                  >
+                    {childId}
+                  </ListItemText>
+                </ListItem>
+              </Link>
             ))}
             <Divider className={classes.divider} />
           </React.Fragment>

@@ -10,7 +10,8 @@ import { Hidden, CssBaseline } from "@material-ui/core";
 import theme from "./theme";
 import { Copyright } from "@material-ui/icons";
 import Header from "./components/Header";
-import Content from "./components/Content";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { links } from "./components/links";
 
 const drawerWidth = 256;
 
@@ -50,37 +51,58 @@ function App(props: AppProps) {
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+    console.log(links);
+  };
+
+  const renderNavigator = () => {
+    return (
+      <nav className={classes.drawer}>
+        <Hidden smUp implementation="js">
+          <Navigator
+            PaperProps={{ style: { width: drawerWidth } }}
+            variant="temporary"
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+          />
+        </Hidden>
+        <Hidden xsDown implementation="css">
+          <Navigator PaperProps={{ style: { width: drawerWidth } }} />
+        </Hidden>
+      </nav>
+    );
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <div className={classes.root}>
-        <CssBaseline />
+    <Router>
+      <ThemeProvider theme={theme}>
+        <div className={classes.root}>
+          <CssBaseline />
 
-        <nav className={classes.drawer}>
-          <Hidden smUp implementation="js">
-            <Navigator
-              PaperProps={{ style: { width: drawerWidth } }}
-              variant="temporary"
-              open={mobileOpen}
-              onClose={handleDrawerToggle}
-            />
-          </Hidden>
-          <Hidden xsDown implementation="css">
-            <Navigator PaperProps={{ style: { width: drawerWidth } }} />
-          </Hidden>
-        </nav>
-        <div className={classes.app}>
-          <Header onDrawerToggle={handleDrawerToggle} />
-          <main className={classes.main}>
-            <Content />
-          </main>
-          <footer className={classes.footer}>
-            <Copyright />
-          </footer>
+          {renderNavigator()}
+          <div className={classes.app}>
+            <Header onDrawerToggle={handleDrawerToggle} />
+
+            <Switch>
+              <main className={classes.main}>
+                {links.map((link) =>
+                  link.children.map((child) => {
+                    return (
+                      <Route exact path={child.to} key={child.to}>
+                        {child.component}
+                      </Route>
+                    );
+                  })
+                )}
+              </main>
+            </Switch>
+
+            <footer className={classes.footer}>
+              <Copyright />
+            </footer>
+          </div>
         </div>
-      </div>
-    </ThemeProvider>
+      </ThemeProvider>
+    </Router>
   );
 }
 
