@@ -68,7 +68,70 @@ function Header(props: HeaderProps) {
       setValue(0);
     }
   }, [currentLink, setValue, pathname]);
-  if (!currentLink) return null;
+
+  const renderHeaderMenu = () => {
+    if (!currentLink) return null;
+
+    return (
+      <div>
+        <AppBar
+          component="div"
+          className={classes.secondaryBar}
+          color="primary"
+          position="static"
+          elevation={0}
+        >
+          <Toolbar>
+            <Grid container alignItems="center" spacing={1}>
+              <Grid item xs>
+                <Typography color="inherit" variant="h5" component="h1">
+                  {currentLink.id}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Button
+                  className={classes.button}
+                  variant="outlined"
+                  color="inherit"
+                  size="small"
+                >
+                  Web setup
+                </Button>
+              </Grid>
+              <Grid item>
+                <Tooltip title="Help">
+                  <IconButton color="inherit">
+                    <HelpIcon />
+                  </IconButton>
+                </Tooltip>
+              </Grid>
+            </Grid>
+          </Toolbar>
+        </AppBar>
+        <AppBar
+          component="div"
+          className={classes.secondaryBar}
+          color="primary"
+          position="static"
+          elevation={0}
+        >
+          <Tabs value={value} onChange={handleChange} textColor="inherit">
+            {currentLink.children.map((child) => {
+              return (
+                <Tab
+                  textColor="inherit"
+                  label={child.label}
+                  component={Link}
+                  to={child.to}
+                  key={child.to}
+                />
+              );
+            })}
+          </Tabs>
+        </AppBar>
+      </div>
+    );
+  };
 
   return (
     <React.Fragment>
@@ -111,61 +174,8 @@ function Header(props: HeaderProps) {
           </Grid>
         </Toolbar>
       </AppBar>
-      <AppBar
-        component="div"
-        className={classes.secondaryBar}
-        color="primary"
-        position="static"
-        elevation={0}
-      >
-        <Toolbar>
-          <Grid container alignItems="center" spacing={1}>
-            <Grid item xs>
-              <Typography color="inherit" variant="h5" component="h1">
-                {currentLink.id}
-              </Typography>
-            </Grid>
-            <Grid item>
-              <Button
-                className={classes.button}
-                variant="outlined"
-                color="inherit"
-                size="small"
-              >
-                Web setup
-              </Button>
-            </Grid>
-            <Grid item>
-              <Tooltip title="Help">
-                <IconButton color="inherit">
-                  <HelpIcon />
-                </IconButton>
-              </Tooltip>
-            </Grid>
-          </Grid>
-        </Toolbar>
-      </AppBar>
-      <AppBar
-        component="div"
-        className={classes.secondaryBar}
-        color="primary"
-        position="static"
-        elevation={0}
-      >
-        <Tabs value={value} onChange={handleChange} textColor="inherit">
-          {currentLink.children.map((child) => {
-            return (
-              <Tab
-                textColor="inherit"
-                label={child.label}
-                component={Link}
-                to={child.to}
-                key={child.to}
-              />
-            );
-          })}
-        </Tabs>
-      </AppBar>
+
+      {renderHeaderMenu()}
     </React.Fragment>
   );
 }
