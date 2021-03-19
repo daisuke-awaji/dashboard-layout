@@ -58,7 +58,7 @@ const Page: React.FC = () => {
 
   for (let i = 0; i < 3; i++) {
     const apikey = faker.random.uuid();
-    const a = {
+    const a: any = {
       name: apikey,
       type: "line",
       itemStyle: {
