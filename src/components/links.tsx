@@ -1,9 +1,28 @@
 import React from "react";
 import ProjectUsageContent from "./ProjectUsageContent";
+import PeopleIcon from "@material-ui/icons/People";
+import DnsRoundedIcon from "@material-ui/icons/DnsRounded";
+import PermMediaOutlinedIcon from "@material-ui/icons/PhotoSizeSelectActual";
+import SettingsIcon from "@material-ui/icons/Settings";
+import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 
-export const links = [
+export type Link = {
+  id: string;
+  category: string;
+  icon: any;
+  path: string;
+  children: LinkItem[];
+};
+type LinkItem = {
+  label: string;
+  to: string;
+  component: any;
+};
+export const links: Link[] = [
   {
     id: "Authentication",
+    category: "Develop",
+    icon: <PeopleIcon />,
     path: "/authentication",
     children: [
       {
@@ -21,15 +40,12 @@ export const links = [
         to: "/authentication/templates",
         component: <div>xxx</div>,
       },
-      {
-        label: "Usage",
-        to: "/authentication/usage",
-        component: <div>xxx</div>,
-      },
     ],
   },
   {
     id: "Database",
+    category: "Develop",
+    icon: <DnsRoundedIcon />,
     path: "/database",
     children: [
       {
@@ -56,6 +72,8 @@ export const links = [
   },
   {
     id: "Storage",
+    category: "Develop",
+    icon: <PermMediaOutlinedIcon />,
     path: "/storage",
     children: [
       {
@@ -66,18 +84,23 @@ export const links = [
     ],
   },
   {
-    id: "Analytics",
-    path: "/analytics",
+    id: "Usage",
+    category: "Analytics",
+    icon: <SettingsIcon />,
+    path: "/usage",
     children: [
       {
-        label: "HelloWorld",
-        to: "/analytics",
-        component: <div>xxx</div>,
+        label: "URLごとのAPI実行数",
+        to: "/usage",
+        component: <div>usage</div>,
       },
     ],
   },
+
   {
     id: "Cost",
+    category: "Cost",
+    icon: <AttachMoneyIcon />,
     path: "/cost",
     children: [
       {
@@ -88,3 +111,11 @@ export const links = [
     ],
   },
 ];
+
+type Categories = { [key: string]: Link[] };
+
+export const categories = links.reduce((prev, current, index) => {
+  if (!prev[current.category]) prev[current.category] = [];
+  prev[current.category].push(current);
+  return prev;
+}, {} as Categories);

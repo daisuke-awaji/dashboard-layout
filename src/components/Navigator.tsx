@@ -13,43 +13,10 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import HomeIcon from "@material-ui/icons/Home";
-import PeopleIcon from "@material-ui/icons/People";
-import DnsRoundedIcon from "@material-ui/icons/DnsRounded";
-import PermMediaOutlinedIcon from "@material-ui/icons/PhotoSizeSelectActual";
-import TimerIcon from "@material-ui/icons/Timer";
-import SettingsIcon from "@material-ui/icons/Settings";
-import PhonelinkSetupIcon from "@material-ui/icons/PhonelinkSetup";
 import { Omit } from "@material-ui/types";
 import { SERVICE_NAME } from "../Constants";
 import { Link, useLocation } from "react-router-dom";
-import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
-
-const categories = [
-  {
-    id: "Develop",
-    children: [
-      {
-        id: "Authentication",
-        icon: <PeopleIcon />,
-        to: "/authentication",
-      },
-      { id: "Database", icon: <DnsRoundedIcon />, to: "/database" },
-      { id: "Storage", icon: <PermMediaOutlinedIcon />, to: "/storage" },
-    ],
-  },
-  {
-    id: "Quality",
-    children: [
-      { id: "Analytics", icon: <SettingsIcon />, to: "/analytics" },
-      { id: "Performance", icon: <TimerIcon />, to: "/performance" },
-      { id: "Test Lab", icon: <PhonelinkSetupIcon />, to: "/testlab" },
-    ],
-  },
-  {
-    id: "Cost",
-    children: [{ id: "Cost", icon: <AttachMoneyIcon />, to: "/cost" }],
-  },
-];
+import { categories } from "./links";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -120,29 +87,29 @@ function Navigator(props: NavigatorProps) {
             Project Overview
           </ListItemText>
         </ListItem>
-        {categories.map(({ id, children }) => (
-          <React.Fragment key={id}>
+        {Object.keys(categories).map((item) => (
+          <React.Fragment key={item}>
             <ListItem className={classes.categoryHeader}>
               <ListItemText
                 classes={{
                   primary: classes.categoryHeaderPrimary,
                 }}
               >
-                {id}
+                {item}
               </ListItemText>
             </ListItem>
-            {children.map(({ id: childId, icon, to }) => (
+            {categories[item].map(({ id, icon, path }) => (
               <Link
-                to={to}
+                to={path}
                 style={{ color: "inherit", textDecoration: "none" }}
-                key={childId}
+                key={id}
               >
                 <ListItem
-                  key={childId}
+                  key={id}
                   button
                   className={clsx(
                     classes.item,
-                    pathname.includes(to) && classes.itemActiveItem
+                    pathname.includes(path) && classes.itemActiveItem
                   )}
                 >
                   <ListItemIcon className={classes.itemIcon}>
@@ -153,7 +120,7 @@ function Navigator(props: NavigatorProps) {
                       primary: classes.itemPrimary,
                     }}
                   >
-                    {childId}
+                    {id}
                   </ListItemText>
                 </ListItem>
               </Link>
