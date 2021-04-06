@@ -5,6 +5,7 @@ import DnsRoundedIcon from "@material-ui/icons/DnsRounded";
 import PermMediaOutlinedIcon from "@material-ui/icons/PhotoSizeSelectActual";
 import SettingsIcon from "@material-ui/icons/Settings";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
+import { Pokemons } from "./Pokemons";
 
 export type Link = {
   id: string;
@@ -26,9 +27,9 @@ export const links: Link[] = [
     path: "/authentication",
     children: [
       {
-        label: "Users",
+        label: "Pets",
         to: "/authentication",
-        component: <div>authentication</div>,
+        component: <Pokemons />,
       },
       {
         label: "Sign-in method",
