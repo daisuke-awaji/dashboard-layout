@@ -24,7 +24,7 @@ export const Pokemons = () => {
       setMaxPage(Math.floor(pokemon.data.count / limit));
     };
     listPets();
-  }, []);
+  }, [limit, offset, page]);
 
   const handleChangePage = async (event: any, value: number) => {
     setPage(value);
