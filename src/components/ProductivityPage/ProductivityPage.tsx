@@ -1,10 +1,9 @@
 import { Grid } from "@material-ui/core";
-import { CommitsTop } from "./CommitsTop";
-import { PullRequestTimeline } from "./PullRequestTimeline";
-import { BasicCard } from "../BasicCard";
+import { DeveloperScoreCard } from "./DeveloperScore";
+import { PullRequestTimelineCard } from "./PullRequestTimeline";
 import { ScoreCard } from "./ScoreCard";
 import faker from "faker";
-import { useState } from "react";
+import React, { useState } from "react";
 import { RepositorySelector } from "./RepositorySelector";
 import { ProductionLeadTimeCard } from "./ProductionLeadTime";
 import { ActivityRatioCard } from "./ActivityRatio";
@@ -88,14 +87,10 @@ const ProductivityPage = () => {
       </Grid>
 
       <Grid item xs={12} sm={12} md={12} lg={6}>
-        <BasicCard title="Pull Request timeline">
-          <PullRequestTimeline repository={repo} />
-        </BasicCard>
+        <PullRequestTimelineCard repository={repo} />
       </Grid>
       <Grid item xs={12} sm={12} md={12} lg={6}>
-        <BasicCard title="Developer score">
-          <CommitsTop repository={repo} />
-        </BasicCard>
+        <DeveloperScoreCard repository={repo} />
       </Grid>
     </Grid>
   );

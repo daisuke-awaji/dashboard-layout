@@ -2,10 +2,11 @@ import React from "react";
 import ReactECharts from "echarts-for-react";
 import faker from "faker";
 import theme from "../../theme";
+import { BasicCard } from "../BasicCard";
 
 type CommitsTopProps = { repository: string };
 
-export const CommitsTop: React.FC<CommitsTopProps> = ({ repository }) => {
+const CommitsTop: React.FC<CommitsTopProps> = ({ repository }) => {
   const options = {
     tooltip: {
       trigger: "axis",
@@ -142,4 +143,20 @@ export const CommitsTop: React.FC<CommitsTopProps> = ({ repository }) => {
   };
 
   return <ReactECharts option={options} />;
+};
+
+export const DeveloperScoreCard: React.FC<CommitsTopProps> = ({
+  repository,
+}) => {
+  return (
+    <BasicCard title="Developer score">
+      <div style={{ color: "gray" }}>
+        {faker.random.arrayElement([
+          "XXXX さんは積極的にコミュニケーションをとっているようですね。",
+          "XXXX さんのコミット数が多いですね。この調子でがんばりましょう。",
+        ])}
+      </div>
+      <CommitsTop repository={repository} />
+    </BasicCard>
+  );
 };

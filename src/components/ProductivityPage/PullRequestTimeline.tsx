@@ -2,10 +2,24 @@ import React from "react";
 import ReactECharts from "echarts-for-react";
 import theme from "../../theme";
 import faker from "faker";
+import { BasicCard } from "../BasicCard";
 
 type PullRequestTimelineProps = { repository: string };
 
-export const PullRequestTimeline: React.FC<PullRequestTimelineProps> = ({
+export const PullRequestTimelineCard: React.FC<PullRequestTimelineProps> = ({
+  repository,
+}) => {
+  return (
+    <BasicCard title="Pull Request timeline">
+      <div style={{ color: "gray" }}>
+        {faker.random.arrayElement(["マージされた Pull Request の数の推移"])}
+      </div>
+      <PullRequestTimeline repository={repository} />
+    </BasicCard>
+  );
+};
+
+const PullRequestTimeline: React.FC<PullRequestTimelineProps> = ({
   repository,
 }) => {
   const options = {
