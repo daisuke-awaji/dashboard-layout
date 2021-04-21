@@ -1,11 +1,12 @@
 import React from "react";
-import ProjectUsageContent from "./ProjectUsageContent";
+import ProjectUsageContent from "./components/ProjectUsageContent";
 import PeopleIcon from "@material-ui/icons/People";
 import DnsRoundedIcon from "@material-ui/icons/DnsRounded";
 import PermMediaOutlinedIcon from "@material-ui/icons/PhotoSizeSelectActual";
 import SettingsIcon from "@material-ui/icons/Settings";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
-import { Pokemons } from "./Pokemons";
+import { Pokemons } from "./components/Pokemons";
+import ProductivityPage from "./components/ProductivityPage/ProductivityPage";
 
 export type Link = {
   id: string;
@@ -44,30 +45,15 @@ export const links: Link[] = [
     ],
   },
   {
-    id: "Database",
+    id: "Productivity",
     category: "Develop",
     icon: <DnsRoundedIcon />,
-    path: "/database",
+    path: "/productivity",
     children: [
       {
         label: "Data",
-        to: "/database",
-        component: <div>xxx</div>,
-      },
-      {
-        label: "Rule",
-        to: "/database/rule",
-        component: <div>xxx</div>,
-      },
-      {
-        label: "Backup",
-        to: "/database/backup",
-        component: <div>xxx</div>,
-      },
-      {
-        label: "Usage",
-        to: "/database/usage",
-        component: <div>xxx</div>,
+        to: "/productivity",
+        component: <ProductivityPage />,
       },
     ],
   },

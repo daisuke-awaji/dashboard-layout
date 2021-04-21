@@ -11,7 +11,8 @@ import theme from "./theme";
 import { Copyright } from "@material-ui/icons";
 import Header from "./components/Header";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { links } from "./components/links";
+import { links } from "./links";
+import { GitHubAuthCallback } from "./components/GitHubAuthCallback";
 
 const drawerWidth = 256;
 
@@ -54,31 +55,25 @@ function App(props: AppProps) {
     console.log(links);
   };
 
-  const renderNavigator = () => {
-    return (
-      <nav className={classes.drawer}>
-        <Hidden smUp implementation="js">
-          <Navigator
-            PaperProps={{ style: { width: drawerWidth } }}
-            variant="temporary"
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-          />
-        </Hidden>
-        <Hidden xsDown implementation="css">
-          <Navigator PaperProps={{ style: { width: drawerWidth } }} />
-        </Hidden>
-      </nav>
-    );
-  };
-
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <div className={classes.root}>
           <CssBaseline />
 
-          {renderNavigator()}
+          <nav className={classes.drawer}>
+            <Hidden smUp implementation="js">
+              <Navigator
+                PaperProps={{ style: { width: drawerWidth } }}
+                variant="temporary"
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+              />
+            </Hidden>
+            <Hidden xsDown implementation="css">
+              <Navigator PaperProps={{ style: { width: drawerWidth } }} />
+            </Hidden>
+          </nav>
           <div className={classes.app}>
             <Header onDrawerToggle={handleDrawerToggle} />
 
@@ -93,6 +88,9 @@ function App(props: AppProps) {
                     );
                   })
                 )}
+                <Route exact path="/auth/github/callback">
+                  <GitHubAuthCallback />
+                </Route>
               </main>
             </Switch>
 

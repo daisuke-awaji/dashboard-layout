@@ -4,4 +4,15 @@
 
 # generate frontend api client
 
+```
 docker run --rm -v $(pwd):/local openapitools/openapi-generator-cli generate -i /local/spec.yaml -g typescript-axios -o /src/axios/petstore
+```
+
+# feature
+
+- コミット数の推移
+- PullRequestが作成されてからマージされるまでの時間間隔の推移
+  - 作成者ごと
+
+- ソースコード変更量（additions + deleteions）に対するコメントの数
+

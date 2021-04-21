@@ -1,8 +1,9 @@
 import { Grid } from "@material-ui/core";
+import { Pagination } from "@material-ui/lab";
 import React, { useEffect, useState } from "react";
 import { Page, PokemonApi } from "../axios/pokemon";
 import { PokemonCardItem } from "./PokemonCardItem";
-import Pagination from "@material-ui/lab/Pagination";
+
 
 const api = new PokemonApi();
 

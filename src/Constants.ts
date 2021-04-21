@@ -1,1 +1,1 @@
-export const SERVICE_NAME = "XYZ Console";
+export const SERVICE_NAME = "GitScope";

@@ -20,7 +20,8 @@ import {
   WithStyles,
 } from "@material-ui/core/styles";
 import { Link, useLocation } from "react-router-dom";
-import { links } from "./links";
+import { links } from "../links";
+import { GitHubLoginButton } from "./GitHubLoginButton";
 
 const lightColor = "rgba(255, 255, 255, 0.7)";
 
@@ -152,9 +153,7 @@ function Header(props: HeaderProps) {
             </Hidden>
             <Grid item xs />
             <Grid item>
-              <Link className={classes.link} to="/">
-                Go to docs
-              </Link>
+              <GitHubLoginButton />
             </Grid>
             <Grid item>
               <Tooltip title="Alerts • No alerts">

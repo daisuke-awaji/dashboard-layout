@@ -16,7 +16,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import { Omit } from "@material-ui/types";
 import { SERVICE_NAME } from "../Constants";
 import { Link, useLocation } from "react-router-dom";
-import { categories } from "./links";
+import { categories } from "../links";
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -62,7 +62,7 @@ const styles = (theme: Theme) =>
 
 export interface NavigatorProps
   extends Omit<DrawerProps, "classes">,
-    WithStyles<typeof styles> {}
+  WithStyles<typeof styles> { }
 
 function Navigator(props: NavigatorProps) {
   const { classes, ...other } = props;
