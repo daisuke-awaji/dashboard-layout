@@ -1,12 +1,12 @@
-import React from "react";
 import ProjectUsageContent from "./components/ProjectUsageContent";
 import PeopleIcon from "@material-ui/icons/People";
-import DnsRoundedIcon from "@material-ui/icons/DnsRounded";
-import PermMediaOutlinedIcon from "@material-ui/icons/PhotoSizeSelectActual";
 import SettingsIcon from "@material-ui/icons/Settings";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
-import { Pokemons } from "./components/Pokemons";
 import ProductivityPage from "./components/ProductivityPage/ProductivityPage";
+import AccountTreeIcon from "@material-ui/icons/AccountTree";
+import DashboardIcon from "@material-ui/icons/Dashboard";
+import React from "react";
+import { RepositoryPage } from "./components/RepositoryPage/RepositoryPage";
 
 export type Link = {
   id: string;
@@ -21,65 +21,78 @@ type LinkItem = {
   component: any;
 };
 export const links: Link[] = [
+  // {
+  //   id: "Authentication",
+  //   category: "Develop",
+  //   icon: <PeopleIcon />,
+  //   path: "/authentication",
+  //   children: [
+  //     {
+  //       label: "Pets",
+  //       to: "/authentication",
+  //       component: <Pokemons />,
+  //     },
+  //     {
+  //       label: "Sign-in method",
+  //       to: "/authentication/providers",
+  //       component: <div>xxx</div>,
+  //     },
+  //     {
+  //       label: "Templates",
+  //       to: "/authentication/templates",
+  //       component: <div>xxx</div>,
+  //     },
+  //   ],
+  // },
   {
-    id: "Authentication",
+    id: "Dashboard",
     category: "Develop",
-    icon: <PeopleIcon />,
-    path: "/authentication",
+    icon: <DashboardIcon />,
+    path: "/dashboard",
     children: [
       {
-        label: "Pets",
-        to: "/authentication",
-        component: <Pokemons />,
-      },
-      {
-        label: "Sign-in method",
-        to: "/authentication/providers",
-        component: <div>xxx</div>,
-      },
-      {
-        label: "Templates",
-        to: "/authentication/templates",
-        component: <div>xxx</div>,
-      },
-    ],
-  },
-  {
-    id: "Productivity",
-    category: "Develop",
-    icon: <DnsRoundedIcon />,
-    path: "/productivity",
-    children: [
-      {
-        label: "Data",
-        to: "/productivity",
+        label: "Productivity",
+        to: "/dashboard",
         component: <ProductivityPage />,
       },
     ],
   },
   {
-    id: "Storage",
+    id: "Repositories",
     category: "Develop",
-    icon: <PermMediaOutlinedIcon />,
-    path: "/storage",
+    icon: <AccountTreeIcon />,
+    path: "/repositories",
+    children: [
+      {
+        label: "Repositories",
+        to: "/repositories",
+        component: <RepositoryPage />,
+      },
+    ],
+  },
+  {
+    id: "Users",
+    category: "Develop",
+    icon: <PeopleIcon />,
+    path: "/users",
     children: [
       {
         label: "HelloWorld",
-        to: "/storage",
+        to: "/users",
         component: <div>xxx</div>,
       },
     ],
   },
   {
-    id: "Usage",
-    category: "Analytics",
+    id: "Settings",
+    category: "Settings",
     icon: <SettingsIcon />,
-    path: "/usage",
+    path: "/settings",
     children: [
       {
-        label: "URLごとのAPI実行数",
-        to: "/usage",
-        component: <div>usage</div>,
+        label: "Setting",
+        to: "/settings",
+        component: <div>settings</div>,
       },
     ],
   },

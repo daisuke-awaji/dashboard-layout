@@ -6,7 +6,7 @@ import { ScoreCard } from "./ScoreCard";
 import faker from "faker";
 import { useState } from "react";
 import { RepositorySelector } from "./RepositorySelector";
-import { ProductionLeadTime } from "./ProductionLeadTime";
+import { ProductionLeadTimeCard } from "./ProductionLeadTime";
 import { ActivityRatioCard } from "./ActivityRatio";
 
 const scoreData = [
@@ -84,9 +84,7 @@ const ProductivityPage = () => {
       </Grid>
 
       <Grid item xs={12} sm={12} md={12} lg={12}>
-        <BasicCard title="Production lead time">
-          <ProductionLeadTime repository={repo} />
-        </BasicCard>
+        <ProductionLeadTimeCard repository={repo} />
       </Grid>
 
       <Grid item xs={12} sm={12} md={12} lg={6}>

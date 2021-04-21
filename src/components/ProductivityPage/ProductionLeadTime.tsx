@@ -2,9 +2,10 @@ import React from "react";
 import ReactECharts from "echarts-for-react";
 import theme from "../../theme";
 import faker from "faker";
+import { BasicCard } from "../BasicCard";
 
 type ProductionLeadTimeProps = { repository: string };
-export const ProductionLeadTime: React.FC<ProductionLeadTimeProps> = ({
+const ProductionLeadTime: React.FC<ProductionLeadTimeProps> = ({
   repository,
 }) => {
   const data = [];
@@ -73,4 +74,20 @@ export const ProductionLeadTime: React.FC<ProductionLeadTimeProps> = ({
   };
 
   return <ReactECharts option={options} />;
+};
+
+export const ProductionLeadTimeCard: React.FC<ProductionLeadTimeProps> = ({
+  repository,
+}) => {
+  return (
+    <BasicCard title="Production lead time">
+      <div style={{ color: "gray" }}>
+        {faker.random.arrayElement([
+          "先週と比べてリードタイムが落ちています。プロセスを見直しましょう。",
+          "リードタイムが改善されています。この調子で開発を進めましょう。",
+        ])}
+      </div>
+      <ProductionLeadTime repository={repository} />
+    </BasicCard>
+  );
 };
