@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core";
 import React from "react";
-import { SERVICE_NAME } from "../Constants";
-import { CardWithBelowContent } from "./CardWithBelowContent";
+import { SERVICE_NAME } from "../../Constants";
+import { CardWithBelowContent } from "../CardWithBelowContent";
 
 const useStyles = makeStyles({
   placeholder: {

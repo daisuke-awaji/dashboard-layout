@@ -1,4 +1,4 @@
-import ProjectUsageContent from "./components/ProjectUsageContent";
+import ProjectUsageContent from "./components/CostPage/ProjectUsageContent";
 import PeopleIcon from "@material-ui/icons/People";
 import SettingsIcon from "@material-ui/icons/Settings";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
