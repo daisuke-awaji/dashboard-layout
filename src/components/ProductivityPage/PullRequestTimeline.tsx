@@ -3,7 +3,11 @@ import ReactECharts from "echarts-for-react";
 import theme from "../../theme";
 import faker from "faker";
 
-export const PullRequestTimeline: React.FC = () => {
+type PullRequestTimelineProps = { repository: string };
+
+export const PullRequestTimeline: React.FC<PullRequestTimelineProps> = ({
+  repository,
+}) => {
   const options = {
     xAxis: {
       type: "category",
@@ -32,7 +36,7 @@ export const PullRequestTimeline: React.FC = () => {
     },
     legend: {
       top: 0,
-      data: ["intecrb/sample_app"],
+      data: [repository],
     },
     dataZoom: [
       {
@@ -41,7 +45,7 @@ export const PullRequestTimeline: React.FC = () => {
     ],
     series: [
       {
-        name: "intecrb/sample_app",
+        name: repository,
         type: "bar",
         itemStyle: {
           color: theme.palette.primary.light,
@@ -57,6 +61,15 @@ export const PullRequestTimeline: React.FC = () => {
           data: [{ type: "average", name: "平均值" }],
         },
         data: [
+          ["2019-10-1", faker.random.number(10)],
+          ["2019-10-2", faker.random.number(10)],
+          ["2019-10-3", faker.random.number(10)],
+          ["2019-10-4", faker.random.number(10)],
+          ["2019-10-5", faker.random.number(10)],
+          ["2019-10-6", faker.random.number(10)],
+          ["2019-10-7", faker.random.number(10)],
+          ["2019-10-8", faker.random.number(10)],
+          ["2019-10-9", faker.random.number(10)],
           ["2019-10-10", faker.random.number(10)],
           ["2019-10-11", faker.random.number(10)],
           ["2019-10-12", faker.random.number(10)],

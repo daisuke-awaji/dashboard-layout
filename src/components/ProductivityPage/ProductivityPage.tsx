@@ -3,62 +3,100 @@ import { CommitsTop } from "./CommitsTop";
 import { PullRequestTimeline } from "./PullRequestTimeline";
 import { BasicCard } from "../BasicCard";
 import { ScoreCard } from "./ScoreCard";
+import faker from "faker";
+import { useState } from "react";
+import { RepositorySelector } from "./RepositorySelector";
+import { ProductionLeadTime } from "./ProductionLeadTime";
+import { ActivityRatioCard } from "./ActivityRatio";
+
+const scoreData = [
+  {
+    title: "Productivity",
+    score: faker.random.number(100),
+    unit: "",
+    ratio: faker.random.number({ min: -100, max: 100 }).toString(),
+    chip: "today",
+  },
+  {
+    title: "Efficiency",
+    score: faker.random.number(100),
+    unit: "",
+    ratio: faker.random.number({ min: -100, max: 100 }).toString(),
+    chip: "1 week",
+  },
+  {
+    title: "Total Amount",
+    score: faker.random.number(100),
+    unit: "",
+    ratio: faker.random.number({ min: -100, max: 100 }).toString(),
+    chip: "yesterday",
+  },
+  {
+    title: "Goal",
+    score: faker.random.number(100),
+    unit: "",
+    ratio: faker.random.number({ min: -100, max: 100 }).toString(),
+    chip: "today",
+  },
+];
+
+const repositoies = [
+  "intecrb/sample_app",
+  "intecrb/demo_app",
+  "daisuke-awaji/qiitaScraper",
+  "daisuke-awaji/serverless-appsync-offline-typescript-template",
+];
 
 const ProductivityPage = () => {
+  const [repo, setRepo] = useState(repositoies[0]);
+  const handleChange = (event: any) => {
+    setRepo(event.target.value);
+  };
+
   return (
     <Grid container spacing={2}>
+      <Grid item xs={12} sm={12} md={12} lg={12}>
+        <RepositorySelector
+          repositories={repositoies}
+          selectedRepository={repo}
+          handleChange={handleChange}
+        />
+      </Grid>
       <Grid item xs={12} sm={12} md={12} lg={6}>
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={12} md={6} lg={6}>
-            <ScoreCard
-              title="Productivity"
-              score={82}
-              unit=""
-              ratio="+12"
-              chip="today"
-            />
-          </Grid>
-          <Grid item xs={12} sm={12} md={6} lg={6}>
-            <ScoreCard
-              title="Efficiency"
-              score={17}
-              unit=""
-              ratio="+9"
-              chip="1 week"
-            />
-          </Grid>
-          <Grid item xs={12} sm={12} md={6} lg={6}>
-            <ScoreCard
-              title="Total Amount"
-              score={33}
-              unit=""
-              ratio="+2"
-              chip="today"
-            />
-          </Grid>
-          <Grid item xs={12} sm={12} md={6} lg={6}>
-            <ScoreCard
-              title="Productivity"
-              score={2}
-              unit=""
-              ratio="-20"
-              chip="yesterday"
-            />
-          </Grid>
+          {scoreData.map((item) => {
+            return (
+              <Grid item xs={12} sm={12} md={6} lg={6}>
+                <ScoreCard
+                  title={item.title}
+                  score={item.score}
+                  unit={item.unit}
+                  ratio={item.ratio}
+                  chip={item.chip}
+                />
+              </Grid>
+            );
+          })}
         </Grid>
       </Grid>
       <Grid item xs={12} sm={12} md={12} lg={6}>
-        <BasicCard title="ABC" style={{ height: 300 }} />
+        <ActivityRatioCard repository={repo} />
+      </Grid>
+
+      <Grid item xs={12} sm={12} md={12} lg={12}>
+        <BasicCard title="Production lead time">
+          <ProductionLeadTime repository={repo} />
+        </BasicCard>
       </Grid>
 
       <Grid item xs={12} sm={12} md={12} lg={6}>
         <BasicCard title="Pull Request timeline">
-          <PullRequestTimeline />
+          <PullRequestTimeline repository={repo} />
         </BasicCard>
       </Grid>
       <Grid item xs={12} sm={12} md={12} lg={6}>
         <BasicCard title="Developer score">
-          <CommitsTop />
+          <CommitsTop repository={repo} />
         </BasicCard>
       </Grid>
     </Grid>

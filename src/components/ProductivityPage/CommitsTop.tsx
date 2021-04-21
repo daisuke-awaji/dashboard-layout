@@ -1,8 +1,11 @@
 import React from "react";
 import ReactECharts from "echarts-for-react";
 import faker from "faker";
+import theme from "../../theme";
 
-export const CommitsTop: React.FC = () => {
+type CommitsTopProps = { repository: string };
+
+export const CommitsTop: React.FC<CommitsTopProps> = ({ repository }) => {
   const options = {
     tooltip: {
       trigger: "axis",
@@ -38,6 +41,10 @@ export const CommitsTop: React.FC = () => {
       {
         name: "Commits",
         type: "bar",
+        itemStyle: {
+          color: theme.palette.primary.light,
+          width: 1,
+        },
         stack: "total",
         label: {
           show: true,
@@ -59,6 +66,10 @@ export const CommitsTop: React.FC = () => {
       {
         name: "PullRequests",
         type: "bar",
+        itemStyle: {
+          color: theme.palette.primary.main,
+          width: 1,
+        },
         stack: "total",
         label: {
           show: true,
@@ -80,6 +91,10 @@ export const CommitsTop: React.FC = () => {
       {
         name: "Issues",
         type: "bar",
+        itemStyle: {
+          color: theme.palette.primary.dark,
+          width: 1,
+        },
         stack: "total",
         label: {
           show: true,
@@ -101,6 +116,10 @@ export const CommitsTop: React.FC = () => {
       {
         name: "Comments",
         type: "bar",
+        itemStyle: {
+          color: theme.palette.secondary.light,
+          width: 1,
+        },
         stack: "total",
         label: {
           show: true,
