@@ -62,7 +62,7 @@ const styles = (theme: Theme) =>
 
 export interface NavigatorProps
   extends Omit<DrawerProps, "classes">,
-  WithStyles<typeof styles> { }
+    WithStyles<typeof styles> {}
 
 function Navigator(props: NavigatorProps) {
   const { classes, ...other } = props;
@@ -73,6 +73,11 @@ function Navigator(props: NavigatorProps) {
         <ListItem
           className={clsx(classes.firebase, classes.item, classes.itemCategory)}
         >
+          <img
+            src={`${process.env.PUBLIC_URL}/logo.png`}
+            alt="logo"
+            style={{ width: 35, marginRight: 10 }}
+          />
           {SERVICE_NAME}
         </ListItem>
         <ListItem className={clsx(classes.item, classes.itemCategory)}>
