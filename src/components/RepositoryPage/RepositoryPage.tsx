@@ -1,6 +1,7 @@
 import { Button, Divider, Grid } from "@material-ui/core";
 import faker from "faker";
 import React, { useEffect, useState } from "react";
+import { SERVICE_NAME } from "../../Constants";
 import { BasicCard } from "../BasicCard";
 
 const repositoriesData = [
@@ -41,6 +42,10 @@ export const RepositoryPage: React.FC = () => {
     <Grid container spacing={2}>
       <Grid item xs={12}>
         <BasicCard title="Repositories">
+          <div style={{ color: "gray" }}>
+            {SERVICE_NAME} に連携する GitHub リポジトリを追加しましょう。
+          </div>
+
           <Grid
             container
             style={{ marginTop: 30 }}

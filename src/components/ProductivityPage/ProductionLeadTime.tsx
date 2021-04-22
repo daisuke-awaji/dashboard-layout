@@ -73,7 +73,7 @@ const ProductionLeadTime: React.FC<ProductionLeadTimeProps> = ({
     ],
   };
 
-  return <ReactECharts option={options} />;
+  return <ReactECharts theme={"vintage"} option={options} />;
 };
 
 export const ProductionLeadTimeCard: React.FC<ProductionLeadTimeProps> = ({

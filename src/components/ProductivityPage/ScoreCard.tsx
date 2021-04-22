@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type ScoreCardProps = BasicCardProps & {
-  score: number;
+  score: string;
   unit: string;
   ratio: string;
   chip?: string;

@@ -1,43 +1,11 @@
 import { Grid } from "@material-ui/core";
 import { DeveloperScoreCard } from "./DeveloperScore";
 import { PullRequestTimelineCard } from "./PullRequestTimeline";
-import { ScoreCard } from "./ScoreCard";
-import faker from "faker";
 import React, { useState } from "react";
 import { RepositorySelector } from "./RepositorySelector";
 import { ProductionLeadTimeCard } from "./ProductionLeadTime";
 import { ActivityRatioCard } from "./ActivityRatio";
-
-const scoreData = [
-  {
-    title: "Productivity",
-    score: faker.random.number(100),
-    unit: "",
-    ratio: faker.random.number({ min: -100, max: 100 }).toString(),
-    chip: "today",
-  },
-  {
-    title: "Efficiency",
-    score: faker.random.number(100),
-    unit: "",
-    ratio: faker.random.number({ min: -100, max: 100 }).toString(),
-    chip: "1 week",
-  },
-  {
-    title: "Total Amount",
-    score: faker.random.number(100),
-    unit: "",
-    ratio: faker.random.number({ min: -100, max: 100 }).toString(),
-    chip: "yesterday",
-  },
-  {
-    title: "Goal",
-    score: faker.random.number(100),
-    unit: "",
-    ratio: faker.random.number({ min: -100, max: 100 }).toString(),
-    chip: "today",
-  },
-];
+import { ScoreCards } from "./ScoreCards";
 
 const repositoies = [
   "intecrb/sample_app",
@@ -62,21 +30,7 @@ const ProductivityPage = () => {
         />
       </Grid>
       <Grid item xs={12} sm={12} md={12} lg={6}>
-        <Grid container spacing={2}>
-          {scoreData.map((item) => {
-            return (
-              <Grid item xs={12} sm={12} md={6} lg={6}>
-                <ScoreCard
-                  title={item.title}
-                  score={item.score}
-                  unit={item.unit}
-                  ratio={item.ratio}
-                  chip={item.chip}
-                />
-              </Grid>
-            );
-          })}
-        </Grid>
+        <ScoreCards repository={repo} />
       </Grid>
       <Grid item xs={12} sm={12} md={12} lg={6}>
         <ActivityRatioCard repository={repo} />
