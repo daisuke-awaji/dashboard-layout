@@ -55,6 +55,11 @@ export const links: Link[] = [
         to: "/dashboard",
         component: <ProductivityPage />,
       },
+      {
+        label: "Communication",
+        to: "/dashboard/communication",
+        component: <div>communication</div>,
+      },
     ],
   },
   {

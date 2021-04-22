@@ -6,6 +6,7 @@ import { RepositorySelector } from "./RepositorySelector";
 import { ProductionLeadTimeCard } from "./ProductionLeadTime";
 import { ActivityRatioCard } from "./ActivityRatio";
 import { ScoreCards } from "./ScoreCards";
+import DateRangePickerExample from "./DateRangePicker";
 
 const repositoies = [
   "intecrb/sample_app",
@@ -28,6 +29,9 @@ const ProductivityPage = () => {
           selectedRepository={repo}
           handleChange={handleChange}
         />
+      </Grid>
+      <Grid item xs={12} sm={12} md={12} lg={12}>
+        <DateRangePickerExample />
       </Grid>
       <Grid item xs={12} sm={12} md={12} lg={6}>
         <ScoreCards repository={repo} />

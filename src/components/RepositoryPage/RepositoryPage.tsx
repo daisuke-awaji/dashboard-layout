@@ -55,6 +55,8 @@ export const RepositoryPage: React.FC = () => {
             {repositories.map((repo) => {
               return (
                 <>
+                  <Divider light />
+
                   <Grid
                     item
                     container
@@ -83,7 +85,6 @@ export const RepositoryPage: React.FC = () => {
                       )}
                     </Grid>
                   </Grid>
-                  <Divider light />
                 </>
               );
             })}
